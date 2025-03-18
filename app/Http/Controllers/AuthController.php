@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
     public function showRegisterForm(){
-        return view('register');
+        return view('auth.register');
+    }
+
+    public function register(Request $request){
+        // $validated
     }
 }
