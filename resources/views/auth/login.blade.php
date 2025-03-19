@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DASHMIN - Register</title>
+    <title>DASHMIN - Bootstrap Admin Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="{{ asset('asset/img/favicon.ico') }}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,52 +42,41 @@
         <!-- Spinner End -->
 
 
-        <!-- Sign Up Start -->
+        <!-- Sign In Start -->
         <div class="container-fluid">
             <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
-                    @if (session('success'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('success') }}
-                    </div>
-                    @endif
-                    <form class="bg-light rounded p-4 p-sm-5 my-4 mx-3" method="POST" action="{{ route('register.store') }}">
+                   
+                    <form class="bg-light rounded p-4 p-sm-5 my-4 mx-3" method="POST" action="{{ route('login.submit') }}">
                         @csrf
-                      
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <a href="index.html" class="">
                                 <h3 class="text-primary">RentCar</h3>
                             </a>
-                            <h3>Sign Up</h3>
+                            <h3>Sign In</h3>
                         </div>
-                        @error('name')
+                        @error('email')
                             <div class="text-danger w-100 mb-2">{{ $message }}</div>
                         @enderror
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingText" placeholder="jhondoe" name="name" value="{{ old('name') }}">
-                            <label for="floatingText">Name</label>
-                        </div>
-                        @error('email')
-                        <div class="text-danger mb-2">{{ $message }}</div>
-                        @enderror
-                        <div class="form-floating mb-3">
-                            <input type="email"  class="form-control" id="floatingInput" placeholder="name@example.com" name="email" value="{{ old('email') }}">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
                             <label for="floatingInput">Email address</label>
                         </div>
                         @error('password')
-                        <div class="text-danger mb-2">{{ $message }}</div>
+                            <div class="text-danger w-100 mb-2">{{ $message }}</div>
                         @enderror
                         <div class="form-floating mb-4">
                             <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
                             <label for="floatingPassword">Password</label>
                         </div>
-                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign Up</button>
-                        <p class="text-center mb-0">Already have an Account? <a href="{{ route('login') }}">Sign In</a></p>
+                        
+                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign In</button>
+                        <p class="text-center mb-0">Don't have an Account? <a href="{{ route('register') }}">Sign Up</a></p>
                     </form>
                 </div>
             </div>
         </div>
-        <!-- Sign Up End -->
+        <!-- Sign In End -->
     </div>
 
     <!-- JavaScript Libraries -->
