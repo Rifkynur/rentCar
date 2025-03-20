@@ -19,3 +19,7 @@ Route::get('/users',function(){
 Route::get('/cars',function(){
     return view('cars.index');
 })->name('cars')->middleware('auth');
+
+Route::get('/transactions',function(){
+    return view('transactions.index');
+})->name('transactions')->middleware('auth');

@@ -6,7 +6,7 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <h6 class="mb-4">User List</h6>
+            <h6 class="mb-4">Daftar User</h6>
             <table class="table">
                 <thead>
                     <tr>
