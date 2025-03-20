@@ -15,3 +15,7 @@ Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 Route::get('/users',function(){
     return view('users.index');
 })->name('users')->middleware('auth');
+
+Route::get('/cars',function(){
+    return view('cars.index');
+})->name('cars')->middleware('auth');

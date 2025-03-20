@@ -40,5 +40,8 @@
         @if ($addPage)
             @include('users.create')
         @endif
+        @if ($editPage)
+            @include('users.edit')
+        @endif
     </div>
 </div>

@@ -16,7 +16,7 @@ class UserComponent extends Component
 
     public $addPage,$editPage = false;
 
-    public $name,$email,$password,$role;
+    public $name,$email,$password,$role,$id;
 
     public function render()
     {
@@ -26,6 +26,7 @@ class UserComponent extends Component
     }
 
     public function create(){
+        $this->reset();
         $this->addPage = true;
     }
 
@@ -67,6 +68,37 @@ class UserComponent extends Component
     }
 
     public function edit($id){
+        $this->reset();
+
         $editedUser = User::find($id);
+
+        $this->name = $editedUser->name;
+        $this->email = $editedUser->email;
+        $this->id = $editedUser->id;
+        $this->role = $editedUser->role;
+        $this->editPage = true;
+    }
+
+    public function update(){
+        $updatedUser = User::find($this->id);
+
+        if($this->password == ""){
+            $updatedUser->Update([
+                'name' => $this->name,
+                'email' => $this->email,
+                'role' => $this->role,
+            ]);
+        }else{
+            $updatedUser->Update([
+                'name' => $this->name,
+                'email' => $this->email,
+                'password' => Hash::make($this->password),
+                'role' => $this->role,
+            ]);
+        }
+
+        session()->flash('success','Berhasil mengubah data'); 
+
+        $this->reset();
     }
 }

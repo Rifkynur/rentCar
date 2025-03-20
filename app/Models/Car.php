@@ -11,7 +11,7 @@ class Car extends Model
 {
     use SoftDeletes,HasFactory;
 
-    protected $fillable = ['user_id','police_number','merk','type','capacity','price','photo'];
+    protected $fillable = ['user_id','policeNumber','merk','type','capacity','price','photo'];
 
     public function user()
     {
