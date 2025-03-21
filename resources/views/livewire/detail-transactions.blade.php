@@ -38,6 +38,13 @@
                         <td>{{ $transaction->rentTime }}</td>
                         <td>{{ $transaction->total }}</td>
                         <td>{{ $transaction->status }}</td>
+                        <td>
+                            @if ($transaction->status == 'wait')
+                                <button class="btn btn-sm btn-info" wire:click='proccess({{ $transaction->id }})'>Proses</button>
+                            @elseif($transaction->status == 'proccess')
+                                <button class="btn btn-sm btn-success" wire:click='finish({{ $transaction->id }})'>Selesai</button>
+                            @endif
+                        </td>
                     </tr>
                         
                     @empty
