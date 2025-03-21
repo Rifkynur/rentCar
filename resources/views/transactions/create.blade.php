@@ -26,18 +26,19 @@
             </div>
             <div class="mb-3">
                 <label for="rentTime" class="form-label">Lama Sewa</label>
-                <input type="number" class="form-control" id="rentTime" placeholder="masukan lama sewa" wire:model='price'>
+                <input type="number" class="form-control" id="rentTime" placeholder="masukan lama sewa" wire:model='rentTime' wire:change='totalPrice' maxlength="12">
                 @error('rentTime')
                 <p class="form-text text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-3">
                 <label for="rentDate" class="form-label">Tanggal sewa</label>
-                <input type="date" class="form-control" id="rentDate" placeholder="masukan tanggal sewa" wire:model='price'>
+                <input type="date" class="form-control" id="rentDate" placeholder="masukan tanggal sewa" wire:model='rentDate'>
                 @error('rentDate')
                 <p class="form-text text-danger">{{ $message }}</p>
                 @enderror
             </div>
+            <p>Total : Rp.{{ $total }}</p>
             <button class="btn btn-primary">Simpan</button>
         </form>
     </div>

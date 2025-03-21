@@ -7,12 +7,17 @@ use Livewire\Component;
 use App\Models\Transaction;
 use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionsComponent extends Component
 {
     use WithPagination,WithoutUrlPagination;
-    public $car_id,$name,$phone,$address,$rentTime,$rentDate,$total,$status;
-    public $addPage,$editPage = false;
+    public $car_id,$name,$phone,$address,$rentTime,$rentDate,$total,$status,$price;
+    public $addPage,$detailPage = false;
+
+    public function totalPrice(){
+        $this->total = $this->rentTime * $this->price;
+    }
 
     protected $rules = [
         'name' => ['required'],
@@ -39,21 +44,44 @@ class TransactionsComponent extends Component
         ]);
     }
 
-    public function create($id){
+    public function create($id,$price){
         $this->reset();
         $this->car_id = $id;
+        $this->price = $price;
         $this->addPage = true;
     }
 
     public function store (){
         $this->validate();
         
-        Transaction::create([
-            'name' => $this->name,
-            'car_id' => $this->car_id,
-            'user_id' => Auth::user()->id,
-            ''
+        $availableCar = Transaction::where('car_id',$this->car_id)->whereNot('status','finish')->first();
 
-        ]);
+
+        if($availableCar){
+            session()->flash('error','Mobil sudah ada yang memesan');
+        }else{
+            Transaction::create([
+                'name' => $this->name,
+                'car_id' => $this->car_id,
+                'user_id' => Auth::user()->id,
+                'phone' => $this->phone,
+                'address' => $this->address,
+                'rentTime' => $this->rentTime,
+                'rentDate' => $this->rentDate,
+                'total' => $this->total,
+                'status' => 'wait'
+            ]);
+    
+            session()->flash('success','Transaksi berhasil dibuat');    
+        }
+        $this->dispatch('detail-transaction');
+        $this->reset();
+
+    }
+
+    public function detail(){
+        $this->reset();
+
+        // $this->
     }
 }

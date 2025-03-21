@@ -6,6 +6,11 @@
                     {{ session('success') }}
                 </div>
             @endif
+            @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('error') }}
+                </div>
+            @endif
             <h6 class="mb-4">Daftar Mobil</h6>
 
             <div class="row ">
@@ -22,7 +27,7 @@
                             <li class="list-group-item">{{ $car->capacity }} orang</li>
                         </ul>
                         <div class="card-body">
-                            <a href="#" wire:click='create({{ $car->id }})' class="btn btn-outline-primary">Pesan</a>
+                            <a href="#" wire:click='create({{ $car->id }},{{ $car->price }})' class="btn btn-outline-primary">Pesan</a>
                         </div>
                     </div>
                 </div>
@@ -30,13 +35,11 @@
                 <div class="text-center">Data mobil kosong</div>
                 @endforelse
             </div>
-          
+          {{ $cars->links() }}
         </div>
             @if ($addPage)
                 @include('transactions.create')
             @endif
-            @if ($editPage)
-                @include('transactions.edit')
-            @endif
+          
     </div>
 </div>
