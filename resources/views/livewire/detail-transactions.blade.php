@@ -43,6 +43,8 @@
                                 <button class="btn btn-sm btn-info" wire:click='proccess({{ $transaction->id }})'>Proses</button>
                             @elseif($transaction->status == 'proccess')
                                 <button class="btn btn-sm btn-success" wire:click='finish({{ $transaction->id }})'>Selesai</button>
+                            @else
+                                
                             @endif
                         </td>
                     </tr>

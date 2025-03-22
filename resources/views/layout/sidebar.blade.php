@@ -16,11 +16,11 @@
         </div>
         <div class="navbar-nav w-100">
             
-            <a href="/" class="nav-item nav-link active"><i class="fa fa-th me-2"></i>Dashboard</a>
-            <a href="{{ route('transactions') }}" class="nav-item nav-link"><i class="fa fa-shopping-cart me-2"></i>Transactions</a>
-            <a href="widget.html" class="nav-item nav-link "><i class="fa fa-file-archive me-2"></i> Report</a>
-            <a href="{{ route('cars') }}" class="nav-item nav-link"><i class="fa fa-car me-2"></i>Cars</a>
-            <a href="{{ route('users') }}" class="nav-item nav-link"><i class="fa fa-users me-2"></i>Users</a>
+            <a href="/" class="nav-item nav-link {{ Route::is('home') ? 'active' : '' }}"><i class="fa fa-th me-2"></i>Dashboard</a>
+            <a href="{{ route('transactions') }}" class="nav-item nav-link {{ Route::is('transactions') ? 'active' : '' }}"><i class="fa fa-shopping-cart me-2"></i>Transactions</a>
+            <a href="{{ route('reports') }}" class="nav-item nav-link {{ Route::is('reports') ? 'active' : '' }}"><i class="fa fa-file-archive me-2"></i> Report</a>
+            <a href="{{ route('cars') }}" class="nav-item nav-link {{ Route::is('cars') ? 'active' : '' }}"><i class="fa fa-car me-2"></i>Cars</a>
+            <a href="{{ route('users') }}" class="nav-item nav-link {{ Route::is('users') ? 'active' : '' }}"><i class="fa fa-users me-2"></i>Users</a>
            
         </div>
     </nav>
